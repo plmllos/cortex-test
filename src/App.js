@@ -28,9 +28,25 @@ export default function App() {
       })
   }
 
+  function editProduct(editedProduct) {
+    fetch(`https://dummyjson.com/products/${editedProduct.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(editedProduct),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setItems((prevItems) =>
+          prevItems.map((item) => (item.id === data.id ? data : item))
+        );
+      });
+  }
+
   return (
     <BrowserRouter>
-      <ContextApi.Provider value={{items, deleteProduct}}>
+      <ContextApi.Provider value={{items, deleteProduct, editProduct}}>
         <Routes>
             <Route element={<Layout />}>
               <Route path="/" element={<ProductItem />} />

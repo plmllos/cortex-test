@@ -4,8 +4,9 @@ import { ContextApi } from "../App"
 
 export default function AddProduct() {
 
-    const { items } = useContext(ContextApi)
     const navigate = useNavigate()
+
+    const { items } = useContext(ContextApi)
     const [newProduct, setNewProduct] = useState(items)
     const [dataProduct, setDataProduct] = useState({
         id: "",
@@ -45,9 +46,9 @@ export default function AddProduct() {
         setDataProduct({
             title: "",
             description: "",
-            price: "",
+            price: ""
         })
-        navigate(-1)
+        navigate("/")
     }
 
     return (
